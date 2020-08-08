@@ -1,7 +1,18 @@
-import '../styles/globals.css'
+import { AuthProvider } from "@/lib/auth";
+import { ThemeProvider } from "emotion-theming";
+import { CSSReset } from "@chakra-ui/core";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+import customTheme from "@/styles/theme";
 
-export default MyApp
+const MyApp = ({ Component, pageProps }) => {
+  return (
+    <ThemeProvider theme={customTheme}>
+      <CSSReset />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+    </ThemeProvider>
+  );
+};
+
+export default MyApp;
